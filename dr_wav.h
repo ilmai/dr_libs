@@ -156,23 +156,8 @@ typedef   signed short          drwav_int16;
 typedef unsigned short          drwav_uint16;
 typedef   signed int            drwav_int32;
 typedef unsigned int            drwav_uint32;
-#if defined(_MSC_VER)
-    typedef   signed __int64    drwav_int64;
-    typedef unsigned __int64    drwav_uint64;
-#else
-    #if defined(__clang__) || (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6)))
-        #pragma GCC diagnostic push
-        #pragma GCC diagnostic ignored "-Wlong-long"
-        #if defined(__clang__)
-            #pragma GCC diagnostic ignored "-Wc++11-long-long"
-        #endif
-    #endif
-    typedef   signed long long  drwav_int64;
-    typedef unsigned long long  drwav_uint64;
-    #if defined(__clang__) || (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6)))
-        #pragma GCC diagnostic pop
-    #endif
-#endif
+typedef          int64_t        drwav_int64;
+typedef          uint64_t       drwav_uint64;
 #if defined(__LP64__) || defined(_WIN64) || (defined(__x86_64__) && !defined(__ILP32__)) || defined(_M_X64) || defined(__ia64) || defined (_M_IA64) || defined(__aarch64__) || defined(__powerpc64__)
     typedef drwav_uint64        drwav_uintptr;
 #else
